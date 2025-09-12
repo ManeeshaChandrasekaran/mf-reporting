@@ -4,11 +4,19 @@ const { ModuleFederationPlugin } = require('webpack').container;
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.ts',
+  entry: './src/index.tsx',
   mode: 'development',
   devServer: {
     static: path.join(__dirname, 'dist'),
     port: 3003,
+    historyApiFallback: true,
+    compress: true,
+    hot: true,
+    headers: {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
+    'Access-Control-Allow-Headers': 'X-Requested-With, content-type, Authorization',
+  },
   },
   output: {
     publicPath: 'http://localhost:3003/',
@@ -33,7 +41,7 @@ module.exports = {
       name: 'reporting_app',
       filename: 'remoteEntry.js',
       exposes: {
-        './ReportDashboard': './src/components/ReportDashboard',
+        './ReportDashboard': './src/components/ReportingDashboard',
       },
       shared: {
         react: { singleton: true, eager: true },
