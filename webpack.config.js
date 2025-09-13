@@ -1,4 +1,3 @@
-// Similar to auth-app, just change port and exposes
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { ModuleFederationPlugin } = require('webpack').container;
 const path = require('path');
